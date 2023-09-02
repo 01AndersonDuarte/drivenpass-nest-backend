@@ -48,9 +48,9 @@ model Note {
 model Card {
   id       Int      @id @default(autoincrement())
   title    String   
-  number   Int
+  number   String
   name     String
-  code     Int
+  code     String
   date     DateTime
   password String
   virtual  Boolean

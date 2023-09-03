@@ -39,12 +39,12 @@ export class CardsService {
     }
 
     async getCardById(id: number, user: User) {
-        const note = await this.cardsRepository.getCardById(id);
+        const card = await this.cardsRepository.getCardById(id);
 
-        if (!note) throw new NotFoundException("Card not found.");
-        if (note.userId !== user.id) throw new ForbiddenException("You do not have permission to access this resource.");
+        if (!card) throw new NotFoundException("Card not found.");
+        if (card.userId !== user.id) throw new ForbiddenException("You do not have permission to access this resource.");
 
-        return this.decryptCard(note);
+        return this.decryptCard(card);
     }
 
     private async verifyTitle(title: string, user: User) {

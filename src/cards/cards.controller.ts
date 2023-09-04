@@ -1,18 +1,22 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Query, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Optional, Param, ParseIntPipe, Post, Query, UseGuards } from '@nestjs/common';
 import { CardsService } from './cards.service';
 import { AuthGuard } from '../guards/auth.guard';
 import { User as UserDecorator } from '../decorators/user.decorator';
 import { User } from '@prisma/client';
-import { CardDto } from './dto/card.dto';
+import { CardDoc, CardDto } from './dto/card.dto';
+import { ApiBearerAuth, ApiOkResponse, ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiTags, PickType, getSchemaPath, } from '@nestjs/swagger';
 
+@ApiTags('Cards')
+@ApiBearerAuth()
 @Controller('cards')
 @UseGuards(AuthGuard)
 export class CardsController {
-    
+
     constructor(private readonly cardsService: CardsService) { }
 
     @Post('')
-    async createNote(
+    @ApiOperation({ summary: 'Rota para armazenar dados de cartões' })
+    async createCard(
         @Body() note: CardDto,
         @UserDecorator() user: User
     ) {
@@ -20,6 +24,9 @@ export class CardsController {
     }
 
     @Get('')
+    @ApiOperation({ summary: 'Retorna todos os cartões registrados por usuário', description: 'Aplicando query retorna apenas um dado' })
+    @ApiQuery({ name: 'id', description: 'O id específico de um cartão registrado', example: 1, })
+    @ApiResponse({ type: [CardDoc] })
     async getCards(
         @Query("id", new ParseIntPipe({ optional: true })) id: number = undefined,
         @UserDecorator() user: User
@@ -28,6 +35,8 @@ export class CardsController {
     }
 
     @Delete(':id')
+    @ApiOperation({ summary: 'Deleta um registro de cartão do banco' })
+    @ApiParam({ name: 'id', description: 'O id específico de um cartão registrado', example: 1, })
     async delCard(
         @Param("id", new ParseIntPipe()) id: number,
         @UserDecorator() user: User

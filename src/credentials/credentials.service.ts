@@ -24,7 +24,7 @@ export class CredentialsService {
         if(id!==undefined) return this.getCredentialById(id, user);
         
         return (await (this.credentialsRepository.getCredentials(user)))
-        .map(c => { return this.decryptPassword(c)});
+        .map(c => { return this.decryptPassword(c)}).reverse();
     }
     
     async delCredential(id: number, user: User) {

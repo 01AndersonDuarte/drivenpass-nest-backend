@@ -15,6 +15,7 @@ export class NoteRepository {
         return this.prisma.note.findMany({
             where: { User: user },
             select: {
+                id: true,
                 title: true,
                 note: true
             }
@@ -25,6 +26,7 @@ export class NoteRepository {
         return await this.prisma.note.findFirst({
             where: { id },
             select: {
+                id: true,
                 title: true,
                 note: true,
                 userId: true,

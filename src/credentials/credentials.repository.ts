@@ -20,6 +20,7 @@ export class CredentialsRepository {
         return this.prisma.credential.findMany({
             where: { User: user },
             select: {
+                id: true,
                 title: true,
                 url: true,
                 username: true,
@@ -32,6 +33,7 @@ export class CredentialsRepository {
         return await this.prisma.credential.findFirst({
             where: { id },
             select: {
+                id: true,
                 title: true,
                 url: true,
                 username: true,

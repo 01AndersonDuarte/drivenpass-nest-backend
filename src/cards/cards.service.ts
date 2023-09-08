@@ -30,7 +30,7 @@ export class CardsService {
         if (id !== undefined) return await this.getCardById(id, user);
 
         return (await (this.cardsRepository.getCards(user)))
-            .map(card => { return this.decryptCard(card) });
+            .map(card => { return this.decryptCard(card) }).reverse();
     }
 
     async delCard(id: number, user: User) {

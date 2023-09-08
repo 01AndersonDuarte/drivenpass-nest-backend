@@ -138,6 +138,7 @@ describe('GET Credentials Tests (e2e)', () => {
             .set("Authorization", `Bearer ${token}`)
             .expect(HttpStatus.OK);
         expect(response.body).toEqual([{
+            id: expect.any(Number),
             title: credential.title,
             url: credential.url,
             username: credential.username,
@@ -176,6 +177,7 @@ describe('GET Credentials Tests (e2e)', () => {
             .set("Authorization", `Bearer ${token}`)
             .expect(HttpStatus.OK);
         expect(response.body).toEqual({
+            id: credential.id,
             title: credential.title,
             url: credential.url,
             username: credential.username,

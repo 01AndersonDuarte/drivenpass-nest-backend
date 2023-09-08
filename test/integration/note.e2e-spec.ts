@@ -128,6 +128,7 @@ describe('GET Notes Tests (e2e)', () => {
             .set("Authorization", `Bearer ${token}`)
             .expect(HttpStatus.OK);
         expect(response.body).toEqual([{
+            id: expect.any(Number),
             title: note.title,
             note: note.note
         }]);
@@ -164,6 +165,7 @@ describe('GET Notes Tests (e2e)', () => {
             .set("Authorization", `Bearer ${token}`)
             .expect(HttpStatus.OK);
         expect(response.body).toEqual({
+            id: note.id,
             title: note.title,
             note: note.note,
             userId: note.userId

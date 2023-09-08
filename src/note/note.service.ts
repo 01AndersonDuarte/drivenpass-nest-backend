@@ -24,7 +24,7 @@ export class NoteService {
         if(id!==undefined) return await this.getNoteById(id, user);
         
         return (await (this.noteRepository.getNotes(user)))
-        .map(note => { return this.decryptNote(note)});
+        .map(note => { return this.decryptNote(note)}).reverse();
     }
 
     async delNote(id: number, user: User) {

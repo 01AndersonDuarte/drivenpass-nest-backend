@@ -22,40 +22,38 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+# DrivenPass
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+DrivenPass é uma aplicação web desenvolvida com React e Nest.Js, com esse aplicativo o usuário é capaz de fazer anotações seguras, cadastrar credenciais de sites e até cartões. Todos os dados sensíveis são criptografados e armazenados em um banco de dados postgreSQL. O frontend foi desenvolvido em React.js e se encontra no seguinte repositório: https://github.com/01AndersonDuarte/drivenpass-frontend
 
-## Installation
+Clique no link para testar a aplicação completa: https://drivenpass-frontend-nine.vercel.app/
 
+## Como rodar em sua máquina
+
+Para rodar esse projeto em sua máquina você deve seguir os passos abaixo:
+
+Primeiro configure as variáveis de ambiente no .env
+<ul>
+  <li>DATABASE_URL = "postgresql://SEU-USUÁRIO-POSTGRES:SUA-SENHA-DE-USUÁRIO@localhost:5432/drivenpass?schema=public"</li>
+  <li>JWT_SECRET = SUA-SECRET-JWT</li>
+  <li>SECRET_CRYPTR = SUA-SECRET-CRYPTR </li>
+</ul>
+OBS: Você pode configurar também um .env.test para executar os testes disponíveis sendo necessário apenas um DATABASE_URL para testes.
+
+
+### Para seguir com a execução, use os comandos abaixo: 
+
+Para instalar as dependências:
 ```bash
 $ npm install
 ```
-
-## Running the app
-
+Para rodar as migrações do prismaORM:
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+$ npx prisma migrate dev
 ```
-
-## Test
-
+Para rodar o app:
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+$ npm run start:dev
 ```
 
 ## Support

@@ -1,0 +1,34 @@
+services:
+
+  postgres:
+    image: postgres
+    container_name: postgres
+    restart: always
+    ports:
+      - 5434:5432
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    networks:
+      - drivenpass-network
+    volumes:
+      - drivenpass-volume:/var/lib/postgresql/data
+      
+  drivenpass:
+    build: .
+    container_name: drivenpass
+    ports:
+      - 5000:3000
+    env_file:
+      - .env
+    networks:
+      - drivenpass-network
+    depends_on:
+      - postgres
+
+networks:
+  drivenpass-network:
+    name: drivenpass-network
+
+volumes:
+  drivenpass-volume:
+    name: drivenpass-volume

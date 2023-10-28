@@ -16,4 +16,4 @@ jobs:
         directory: .
         file_name: .env.test
     - name: Run testes
-      run: docker-compose -f docker-compose-tests.yml run betdriven npm run test
+      run: docker-compose -f docker-compose-tests.yml run drivenpass npm run test:e2e

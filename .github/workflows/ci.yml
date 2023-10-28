@@ -1,0 +1,19 @@
+name: Pull Request on GitHub
+on: [pull_request]
+jobs:
+  PullRequest-GitHub:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+    - name: Make new a .env file
+      uses: SpicyPizza/create-envfile@v2.0.2
+      with:
+        envkey_PORT: ${{secrets.PORT}}
+        envkey_POSTGRES_PASSWORD: ${{secrets.POSTGRES_PASSWORD_TEST}}
+        envkey_DATABASE_URL: ${{secrets.DATABASE_URL_TEST}}
+        directory: .
+        file_name: .env.test
+    - name: Run testes
+      run: docker-compose -f docker-compose-tests.yml run betdriven npm run test

@@ -14,7 +14,7 @@ jobs:
         envkey_POSTGRES_PASSWORD: ${{secrets.POSTGRES_PASSWORD_TEST}}
         envkey_DATABASE_URL: ${{secrets.DATABASE_URL_TEST}}
         envkey_JWT_SECRET: ${{secrets.JWT_SECRET}}
-        envkey_SECRET_CRYPTR: ${{secrets_SECRET_CRYPTR}}
+        envkey_SECRET_CRYPTR: ${{secrets.SECRET_CRYPTR}}
         directory: .
         file_name: .env.test
     - name: Run testes
